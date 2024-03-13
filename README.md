@@ -1,3 +1,21 @@
+Mars 2024
+
+#English :
+**<span style="color:red;">"Please note that this repository is the result of an ongoing student project or exercise, and as such, it should not be referenced or considered as a finished or professional product."</span>**
+
+#Français :
+**<span style="color:red;">"Veuillez noter que ce dépôt est le résultat d'un projet ou exercice en cours d'un étudiant, et en tant que tel, il ne doit pas être référencé ou considéré comme un produit fini ou professionnel."</span>**
+
+
+
+
+GitHub de l'exercice : https://github.com/OpenClassrooms-Student-Center/ArgentBank-website
+
+
+
+__Statement of exercise__:
+
+
 # Argent Bank API
 
 This codebase contains the code needed to run the backend for Argent Bank.
