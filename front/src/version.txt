@@ -1,0 +1,7 @@
+0.1 Début Phase 1
+
+- Découpage du site statique en composants React
+- Création des premières routes
+- Transformation des CSS en SCSS
+
+- Corrections des erreurs de dezign approximatif

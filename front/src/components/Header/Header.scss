@@ -1,0 +1,40 @@
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+
+  & a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.active { // tentative de remplacement du a.router-link-exact-active
+      color: #42b983;
+    }
+  }
+
+  // & a.router-link-exact-active { // NOTE: n'a aucun effet / Vue Router-BStrap de lien actif
+  //   color: #42b983;
+  // }
+
+
+  & .main-nav-logo {
+    display: flex;
+    align-items: center;
+  
+    &-image {
+      max-width: 100%;
+      width: 200px;
+    }
+  }
+
+  & .main-nav-item {
+    display: flex;
+    text-decoration: none;
+    margin-right: 0.5rem;
+  
+    & span:hover {
+      text-decoration: underline;
+    }
+  }
+}
