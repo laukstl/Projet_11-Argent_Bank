@@ -3,13 +3,13 @@
 import "./App.scss"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Signin from './pages/Signin';
-import User from './pages/User';
+import Home from '../pages/Home';
+import Signin from '../pages/Signin';
+import User from '../pages/User';
 
-import Header from './components/Header/Header';
-import Footer from './components/Footer';
-import Error from './components/Error';
+import Header from '../components/Header/Header';
+import Footer from '../components/Footer';
+import Error from '../components/Error';
 
 const App = () => {
   return (
