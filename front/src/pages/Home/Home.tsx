@@ -1,12 +1,12 @@
 import './Home.scss';
-import Hero from '../../components/Hero';
-import Features from '../../components/Features';
+import HeroSection from './HeroSection';
+import FeaturesSection from './FeaturesSection';
 
 function Home() {
     return (
         <main>
-            <Hero />
-            <Features />
+            <HeroSection />
+            <FeaturesSection />
         </main>
     )
 }

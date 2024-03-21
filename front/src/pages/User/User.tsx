@@ -1,6 +1,34 @@
 import './User.scss';
 
+// import { useRequireAuth } from '../../features/auth/authUtils';
+import { useNavigate  } from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { useAppSelector } from '../../app/store/hooks';
+import type { RootState } from '../../app/store/store';
+
 function User() {
+    // useRequireAuth();
+    const navigate = useNavigate();
+
+    const isAuth = useAppSelector((state: RootState) => state.auth.isAuthenticated);
+
+    useEffect(() => {
+        console.log(isAuth)
+        if (!isAuth) {
+            navigate("/sign-in");
+        } else {
+            navigate("/user")
+        }
+    }, [isAuth]);
+
+    useEffect(() => {
+        // After successful sign-in, navigate to the user page
+        if (isAuth) {
+            navigate('/user');
+        }
+    }, [isAuth, navigate]);
+
     return (
         <main className="main bg-dark">
             <div className="header">

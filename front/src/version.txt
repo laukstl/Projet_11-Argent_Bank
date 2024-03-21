@@ -5,3 +5,10 @@
 - Transformation des CSS en SCSS
 
 - Corrections des erreurs de dezign approximatif
+
+
+0.2 
+
+- restructuration
+- définission de la logique de connection => appelé à être remplacé par RTK Query
+- known bug: Obligé de click 2 fois sur le bouton Log In => revoir la logique après avoir établi le RTKQ
