@@ -3,17 +3,20 @@ interface Action {
     payload: any;
 }
 
-interface State {
-    isAuthenticated: boolean;
-    token: string | null;
-}
-
-const initialState: State = {
+const initialState = {
     isAuthenticated: false,
     token: null,
+    userName: null,
+    userEmail: null,
+} as {
+    isAuthenticated: boolean;
+    token: string | null;
+    userName: string | null;
+    userEmail: string | null;
 }
 
-const reducer = (state: State = initialState, action: Action) => {
+// const reducer = (state: State = initialState, action: Action) => {
+const reducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case 'SET_ISAUTHENTICATED':
             return {

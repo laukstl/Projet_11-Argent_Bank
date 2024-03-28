@@ -28,6 +28,11 @@
     }
   }
 
+  & .navLink {
+    display: flex;
+    gap: 10px;
+  }
+
   & .main-nav-item {
     display: flex;
     text-decoration: none;

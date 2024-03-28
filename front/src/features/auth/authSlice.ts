@@ -4,37 +4,39 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-interface AuthState {
-  isAuthenticated: boolean;
-  token: string | null;
-}
-
-const initialState: AuthState = {
-  isAuthenticated: false,
-  token: null,
+const initialState = {
+    isAuthenticated: false,
+    email: null,
+    userName: null,
+    userToken: null,
+} as {
+    isAuthenticated: boolean;
+    email: string | null;
+    userName: string | null;
+    userToken: string | null;
 };
 
 const authSlice = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {
-    loginSuccess(state, action: PayloadAction<string>) {
-      state.isAuthenticated = true;
-      state.token = action.payload;
+    name: 'auth',
+    initialState,
+    reducers: {
+        loginSuccess(state, action: PayloadAction<string>) {
+            state.isAuthenticated = true;
+            state.userToken = action.payload;
+            state.userName = action.payload;        },
+        loginFailure(state) {
+            state.isAuthenticated = false;
+            state.userToken = null;
+        },
+        logout(state) {
+            state.isAuthenticated = false;
+            state.userToken = null;
+        },
     },
-    loginFailure(state) {
-      state.isAuthenticated = false;
-      state.token = null;
-    },
-    logout(state) {
-      state.isAuthenticated = false;
-      state.token = null;
-    },
-  },
 });
 
 export default authSlice.reducer;
 export const { loginSuccess, loginFailure, logout } = authSlice.actions;
 
 // // export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
-// // export const selectToken = (state: RootState) => state.auth.token;
+// // export const selectToken = (state: RootState) => state.auth.userToken;
