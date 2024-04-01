@@ -9,19 +9,30 @@ import { useAppSelector } from '../../app/store/hooks';
 // import type { RootState } from '../../app/store/store';
 
 import { Navigate } from 'react-router-dom';
+// import { initialState } from '../../features/auth/authSlice';
 
 function User() {
     // useRequireAuth();
 
     // const navigate = useNavigate();
 
+    // interface AuthState {
+    //     isAuthenticated: boolean;
+    //   }
+
+    //   const initialState: AuthState = {
+    //     isAuthenticated: false, // Par défaut, l'utilisateur n'est pas authentifié
+    //   }
+
+    
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+    console.log(isAuthenticated);
+
+    // const isAuthenticated = useAppSelector((state: RootState) => state.auth.isAuthenticated);
 
     if (!isAuthenticated) {
         return <Navigate to="/" />;
     }
-
-    // const isAuth = useAppSelector((state: RootState) => state.auth.isAuthenticated);
 
     // useEffect(() => {
     //     console.log(isAuth)

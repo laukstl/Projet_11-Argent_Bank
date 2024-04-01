@@ -1,20 +1,34 @@
 
-// // gestion de l'état de l'authentification avec Redux
+// gestion des états d'authentification avec Redux
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-    isAuthenticated: false,
-    email: null,
-    userName: null,
-    userToken: null,
-} as {
+export interface initialStateType {
     isAuthenticated: boolean;
     email: string | null;
     userName: string | null;
     userToken: string | null;
-};
+}
+
+const initialState: initialStateType = {
+    isAuthenticated: false,
+    email: null,
+    userName: null,
+    userToken: null,
+}
+
+// export const initialState = {
+//     isAuthenticated: false,
+//     email: null,
+//     userName: null,
+//     userToken: null,
+// } as {
+//     isAuthenticated: boolean;
+//     email: string | null;
+//     userName: string | null;
+//     userToken: string | null;
+// };
 
 const authSlice = createSlice({
     name: 'auth',
