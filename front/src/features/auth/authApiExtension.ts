@@ -1,7 +1,9 @@
-import { mainApi } from "../../app/api/mainAPI";
 
-const loginEndpoint = mainApi.injectEndpoints({
+import { api } from "../../api/API";
+
+const loginEndpoint = api.injectEndpoints({
     endpoints: (builder) => ({
+
         login: builder.mutation<string, { email: string; password: string }>({
             query: ({ email, password }) => ({
                 url: 'user/login',
@@ -12,8 +14,9 @@ const loginEndpoint = mainApi.injectEndpoints({
                 },
             }),
         }),
+
     }),
     overrideExisting: false,
   })
   
-  export const { useExampleQuery } = loginEndpoint
+  export const { useLoginMutation } = loginEndpoint

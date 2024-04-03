@@ -3,54 +3,41 @@
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+// import { useAppSelector } from '../../store/hooks';
+import type { RootState } from '../../store/store';
 
-export interface initialStateType {
+export interface initialAuthStateType {
     isAuthenticated: boolean;
-    email: string | null;
-    userName: string | null;
-    userToken: string | null;
+    rememberMe: boolean;
 }
 
-const initialState: initialStateType = {
+const initialState: initialAuthStateType = {
     isAuthenticated: false,
-    email: null,
-    userName: null,
-    userToken: null,
+    rememberMe: false,
 }
-
-// export const initialState = {
-//     isAuthenticated: false,
-//     email: null,
-//     userName: null,
-//     userToken: null,
-// } as {
-//     isAuthenticated: boolean;
-//     email: string | null;
-//     userName: string | null;
-//     userToken: string | null;
-// };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        loginSuccess(state, action: PayloadAction<string>) {
+        loginSuccess(state) {
             state.isAuthenticated = true;
-            state.userToken = action.payload;
-            state.userName = action.payload;        },
+        },
         loginFailure(state) {
             state.isAuthenticated = false;
-            state.userToken = null;
         },
-        logout(state) {
+        goLogout(state) {
             state.isAuthenticated = false;
-            state.userToken = null;
         },
+        rememberMe(state, action: PayloadAction<boolean>) {
+            state.rememberMe = action.payload;
+        }
     },
 });
 
 export default authSlice.reducer;
-export const { loginSuccess, loginFailure, logout } = authSlice.actions;
+export const { loginSuccess, loginFailure, goLogout, rememberMe } = authSlice.actions;
 
+export const selectIsRememberMe = (state: RootState) => state.auth.rememberMe;
 // // export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
 // // export const selectToken = (state: RootState) => state.auth.userToken;

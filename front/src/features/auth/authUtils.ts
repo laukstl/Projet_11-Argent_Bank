@@ -1,15 +1,17 @@
 
 // fonctions utilitaires liées à l'auth
 
-import { useLoginMutation } from './authAPI';
-import type { AppDispatch } from '../../app/store/store';
-import { loginSuccess, loginFailure } from './authSlice';
-import { useAppSelector } from '../../app/store/hooks';
-
-// import { Link } from 'react-router-dom';
+import { useLoginMutation } from './authApiExtension';
+import type { AppDispatch } from '../../store/store';
+import { loginSuccess, loginFailure, goLogout } from './authSlice';
+import { useAppSelector } from '../../store/hooks';
+import { selectIsRememberMe } from './authSlice';
+import { useNavigate } from 'react-router-dom';
 
 export const useAuth = (dispatch: AppDispatch) => {
     const [loginMutation] = useLoginMutation();
+    const rememberMe = useAppSelector(selectIsRememberMe)
+    const navigate = useNavigate();
 
     const login = async (email: string, password: string) => {
         try {
@@ -17,10 +19,13 @@ export const useAuth = (dispatch: AppDispatch) => {
 
             if ('data' in result) {
                 const { token } = result.data.body;
-                window.localStorage.setItem("userEmail", email);
-                window.localStorage.setItem("tokenID", token);
-                dispatch(loginSuccess(result));
-            } else {
+                if (rememberMe) {
+                    window.localStorage.setItem("tokenID", token);
+                } else {
+                    window.sessionStorage.setItem("tokenID", token);
+                }
+                dispatch(loginSuccess());
+               } else {
                 throw new Error('Login failed: ' + result.error.data.message);
             }
         } catch (error:any) {
@@ -29,17 +34,28 @@ export const useAuth = (dispatch: AppDispatch) => {
         }
     }
 
-    return { login };
+    const logout = () => {
+        window.localStorage.removeItem("tokenID");
+        window.sessionStorage.removeItem("tokenID");
+        dispatch(goLogout());
+        navigate('/');
+    }
+    
+    return { login, logout };
 };
 
 export const getTokenFromLocalStorage = () => {
     return localStorage.getItem('tokenID');
 };
 
-export const useGetTokenFromStore = () => {
-    const GetStoredUserToken: string = useAppSelector((state: any) => state.auth.token);
-    return GetStoredUserToken;
+export const getTokenFromSessionStorage = () => {
+    return sessionStorage.getItem('tokenID');
 };
+
+// export const useGetTokenFromStore = () => {
+//     const GetStoredUserToken: string = useAppSelector((state: any) => state.auth.token);
+//     return GetStoredUserToken;
+// };
 
 // const ZuseToken = () => {
 //     const isAuth = useAppSelector(state => state.auth.isAuthenticated);

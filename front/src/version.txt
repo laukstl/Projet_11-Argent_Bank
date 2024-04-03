@@ -10,5 +10,15 @@
 0.2 
 
 - restructuration
-- définission de la logique de connection => appelé à être remplacé par RTK Query
+- définition de la logique de connection => appelée à être remplacé par RTK Query
 - known bug: Obligé de click 2 fois sur le bouton Log In => revoir la logique après avoir établi le RTKQ
+
+
+0.3 sortie du sable
+
+- refacto en full Redux-ToolKit Query
+- code splitting effectué ( une seule API )
+- authentification pratiquement achevé
+- A faire: traquer les dispatch à transfo en useAppDispatch ( pour la gestion des middlewares et des types )
+- A faire: compléter la gestion des token ( connection persistante )
+- ...

@@ -1,54 +1,16 @@
 import './User.scss';
 
-// import { useRequireAuth } from '../../features/auth/authUtils';
-
-// import { useNavigate  } from 'react-router-dom';
-// import { useEffect } from 'react';
-
-import { useAppSelector } from '../../app/store/hooks';
-// import type { RootState } from '../../app/store/store';
-
+import { useAppSelector } from '../../store/hooks';
 import { Navigate } from 'react-router-dom';
-// import { initialState } from '../../features/auth/authSlice';
+import { useFetchUserProfile } from '../../features/user/userUtils';
 
 function User() {
-    // useRequireAuth();
-
-    // const navigate = useNavigate();
-
-    // interface AuthState {
-    //     isAuthenticated: boolean;
-    //   }
-
-    //   const initialState: AuthState = {
-    //     isAuthenticated: false, // Par défaut, l'utilisateur n'est pas authentifié
-    //   }
-
-    
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-    console.log(isAuthenticated);
-
-    // const isAuthenticated = useAppSelector((state: RootState) => state.auth.isAuthenticated);
+    useFetchUserProfile();
 
     if (!isAuthenticated) {
-        return <Navigate to="/" />;
+        return <Navigate to="/sign-in" />; // protection supplémentaire
     }
-
-    // useEffect(() => {
-    //     console.log(isAuth)
-    //     if (!isAuth) {
-    //         navigate("/sign-in");
-    //     } else {
-    //         navigate("/user")
-    //     }
-    // }, [isAuth]);
-
-    // useEffect(() => {
-    //     // After successful sign-in, navigate to the user page
-    //     if (isAuth) {
-    //         navigate('/user');
-    //     }
-    // }, [isAuth, navigate]);
 
     return (
         <main className="main bg-dark">

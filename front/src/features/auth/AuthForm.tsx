@@ -4,20 +4,15 @@
 import {useAuth} from './authUtils';
 
 import styles from './AuthForm.module.scss'; // restreint les styles à ce module
-// import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../app/store/hooks';
-
-// import { useEffect } from 'react';
-
+import { useAppDispatch } from '../../store/hooks';
 import { Navigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../app/store/hooks';
-// import { logout } from './authSlice';
+import { useAppSelector } from '../../store/hooks';
+import { rememberMe } from './authSlice';
 
 function AuthForm() {
     const dispatch = useAppDispatch();
-    // dispatch(logout());²
     const { login } = useAuth(dispatch);
 
     const handleSignInClick = () => {
@@ -25,13 +20,6 @@ function AuthForm() {
     };
 
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-    // console.log(useAppSelector(state => state.auth.isAuthenticated))
-    // useEffect(() => {
-    //     handleSignInClick()
-        
-    //     console.log(isAuth);
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
 
     if (isAuthenticated) {
         return <Navigate to="/user" />;
@@ -65,7 +53,11 @@ function AuthForm() {
                     <label><input
                         type="checkbox"
                         id="remember-me"
-                    // activated=> dispatch
+                        defaultChecked={false}
+                        onChange={
+                            (e) => {dispatch(
+                                rememberMe(e.target.checked)
+                            )}}
                     />
                         Remember me
                     </label>

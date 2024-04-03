@@ -1,13 +1,15 @@
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
-import { logout } from '../../features/auth/authSlice';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { goLogout } from '../../features/auth/authSlice';
+import { selectFirstName } from '../../features/user/userSlice';
 
 function Header() {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-    // const userName = useAppSelector(state => state.auth.userName);
-    // console.log(userName)
+  
+    const userName = useAppSelector(selectFirstName);
+
     return (
         <nav className="main-nav">
             <NavLink
@@ -40,13 +42,13 @@ function Header() {
                 to="/sign-in"
                 >
                 <i className="fa fa-user-circle"></i>
-                <span>&nbsp;Bibi</span>
+                <span>&nbsp;{userName}</span>
                 {/* <span>&nbsp;{userName}</span> */}
                 </NavLink>
 
                 <NavLink
                     className="main-nav-item"
-                    onClick={() => dispatch(logout())}
+                    onClick={() => dispatch(goLogout())}
                     to="/"
                 >
                     <i className="fa fa-sign-out"></i>
