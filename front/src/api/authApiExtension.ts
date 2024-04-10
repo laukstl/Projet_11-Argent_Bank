@@ -1,5 +1,5 @@
 
-import { api } from "../../api/API";
+import { api } from "./API";
 
 const loginEndpoint = api.injectEndpoints({
     endpoints: (builder) => ({

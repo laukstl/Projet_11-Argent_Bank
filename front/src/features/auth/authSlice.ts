@@ -20,13 +20,13 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        loginSuccess(state) {
+        setIsAuth(state) {
             state.isAuthenticated = true;
         },
         loginFailure(state) {
             state.isAuthenticated = false;
         },
-        goLogout(state) {
+        unsetIsAuth(state) {
             state.isAuthenticated = false;
         },
         rememberMe(state, action: PayloadAction<boolean>) {
@@ -36,8 +36,7 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { loginSuccess, loginFailure, goLogout, rememberMe } = authSlice.actions;
+export const { setIsAuth, loginFailure, unsetIsAuth, rememberMe } = authSlice.actions;
 
 export const selectIsRememberMe = (state: RootState) => state.auth.rememberMe;
-// // export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
-// // export const selectToken = (state: RootState) => state.auth.userToken;
+// // export const selectIsAuthenticated = (state: RootState) => state.auth.setIsAuth;

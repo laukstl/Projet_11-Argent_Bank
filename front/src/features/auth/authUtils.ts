@@ -1,11 +1,12 @@
 
 // fonctions utilitaires liées à l'auth
 
-import { useLoginMutation } from './authApiExtension';
+import { useLoginMutation } from '../../api/authApiExtension';
 import type { AppDispatch } from '../../store/store';
-import { loginSuccess, loginFailure, goLogout } from './authSlice';
+import { setIsAuth, loginFailure, unsetIsAuth } from './authSlice';
 import { useAppSelector } from '../../store/hooks';
 import { selectIsRememberMe } from './authSlice';
+import { wipeUserInfo } from '../user/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 export const useAuth = (dispatch: AppDispatch) => {
@@ -16,15 +17,14 @@ export const useAuth = (dispatch: AppDispatch) => {
     const login = async (email: string, password: string) => {
         try {
             const result:any = await loginMutation({ email, password });
-
             if ('data' in result) {
                 const { token } = result.data.body;
-                if (rememberMe) {
-                    window.localStorage.setItem("tokenID", token);
-                } else {
+                if (!rememberMe) {
                     window.sessionStorage.setItem("tokenID", token);
+                } else {
+                    window.localStorage.setItem("tokenID", token);
                 }
-                dispatch(loginSuccess());
+                dispatch(setIsAuth());
                } else {
                 throw new Error('Login failed: ' + result.error.data.message);
             }
@@ -37,7 +37,8 @@ export const useAuth = (dispatch: AppDispatch) => {
     const logout = () => {
         window.localStorage.removeItem("tokenID");
         window.sessionStorage.removeItem("tokenID");
-        dispatch(goLogout());
+        dispatch(wipeUserInfo());
+        dispatch(unsetIsAuth());
         navigate('/');
     }
     
@@ -48,21 +49,23 @@ export const getTokenFromLocalStorage = () => {
     return localStorage.getItem('tokenID');
 };
 
-export const getTokenFromSessionStorage = () => {
-    return sessionStorage.getItem('tokenID');
-};
-
-// export const useGetTokenFromStore = () => {
-//     const GetStoredUserToken: string = useAppSelector((state: any) => state.auth.token);
-//     return GetStoredUserToken;
+// export const getTokenFromSessionStorage = () => {
+//     return sessionStorage.getItem('tokenID');
 // };
 
-// const ZuseToken = () => {
-//     const isAuth = useAppSelector(state => state.auth.isAuthenticated);
-//     console.log(isAuth);
-// }
+export const getToken = () => {
+    return sessionStorage.getItem('tokenID') ?? localStorage.getItem('tokenID');
+};
 
-// ZuseToken();
+
+export const checkPersistentToken = () => {
+    const token = getTokenFromLocalStorage();
+    if (token) {
+        console.log(token)
+    }
+}
+
+
 
 // -----------------------------------------------------------------------
 
@@ -71,37 +74,7 @@ export const getTokenFromSessionStorage = () => {
 // Fonctions de redirection ( si token non valide/expiriré vers page connection)
 // Autres fonctions utilitaires ( gestion des erreurs d'auth )
 
-// import { useAppSelector } from '../../app/store/hooks';
-// import type { RootState } from '../../app/store/store';
-
-// import { useEffect } from 'react'; 
-// import { useNavigate  } from 'react-router-dom';
-// export const useRequireAuth = () => {
-//     const isAuth = useAppSelector((state: RootState) => state.auth.isAuthenticated);
-//     const navigate = useNavigate ();
-
-//     useEffect(() => {
-//         if (!isAuth) {return navigate("/sign-in");}
-//     }, [isAuth, navigate]);};
-
 //---------------------IDEES EN VRAC----------------------------------
-
-
-// function()???
-// store une valeur dans le store
-// store.dispatch({ type: 'SET_VAL', payload: 'ma_valeur' });
-
-// récup la val
-// import type { RootState } from '../../app/store/store';
-// import { useSelector } from 'react-redux';
-// const val = useSelector((state: RootState) => state.isAnthenticated);
-// console.log(val);
-
-
-// const {token:object, setToken:function} = useState({email:null, password:null});
-
-// localStorage.setItem('state', token);
-// stock dans redux => isAuthenticated:booléen
 
 
 export const testEmail = () => {

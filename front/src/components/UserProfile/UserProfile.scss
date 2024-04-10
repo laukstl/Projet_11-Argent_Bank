@@ -1,0 +1,43 @@
+.userProfileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+    gap: 10px;
+    color: #444;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    font-weight: 600;
+
+    & .title {
+        font-size: 2rem;
+        font-weight: 500;
+        margin-bottom: 5px;
+    };
+
+    & label {
+        // color: red;
+
+        & input {
+            // color: blue;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #C4C4C4;
+            font-size: 1rem;
+        }
+    }
+
+    & .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        & .button {
+            margin: 0;
+            width: 165px;
+            padding: 15px;
+        }
+    }
+
+}

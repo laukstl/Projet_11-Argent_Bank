@@ -1,12 +1,13 @@
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { goLogout } from '../../features/auth/authSlice';
+import { useAuth } from '../../features/auth/authUtils';
 import { selectFirstName } from '../../features/user/userSlice';
 
 function Header() {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+    const { logout } = useAuth(dispatch);
   
     const userName = useAppSelector(selectFirstName);
 
@@ -24,7 +25,7 @@ function Header() {
                 <h1 className="sr-only">Argent Bank</h1>
             </NavLink>
 
-            <p style={{color: 'red'}}>Auth ? {isAuthenticated?'TRUE':'FALSE'}</p>
+            {/* <p style={{color: 'red'}}>Auth ? {isAuthenticated?'TRUE':'FALSE'}</p> */}
 
             {!isAuthenticated? (
             <NavLink
@@ -43,12 +44,11 @@ function Header() {
                 >
                 <i className="fa fa-user-circle"></i>
                 <span>&nbsp;{userName}</span>
-                {/* <span>&nbsp;{userName}</span> */}
                 </NavLink>
 
                 <NavLink
                     className="main-nav-item"
-                    onClick={() => dispatch(goLogout())}
+                    onClick={logout}
                     to="/"
                 >
                     <i className="fa fa-sign-out"></i>

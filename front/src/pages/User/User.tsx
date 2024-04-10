@@ -1,10 +1,18 @@
 import './User.scss';
+import Button from '../../components/Button';
 
 import { useAppSelector } from '../../store/hooks';
 import { Navigate } from 'react-router-dom';
 import { useFetchUserProfile } from '../../features/user/userUtils';
+import UserProfile from '../../components/UserProfile/UserProfile';
+import { useState } from 'react';
 
 function User() {
+    const [isEditing, setIsEditing] = useState(false);
+    const handleEditNameClick = () => {
+        setIsEditing(true);
+      };
+    
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     useFetchUserProfile();
 
@@ -16,7 +24,17 @@ function User() {
         <main className="main bg-dark">
             <div className="header">
                 <h1>Welcome back<br />Tony Jarvis!</h1>
-                <button className="edit-button">Edit Name</button>
+                {!isEditing && (
+                    // <button
+                    //     className="edit-button"
+                    //     onClick={handleEditNameClick}
+                    // >Edit Name</button>
+                    <Button
+                        buttonText="Edit Name"
+                        actionOnClick={handleEditNameClick}
+                    />
+                )}
+                {isEditing && <UserProfile />}
             </div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">
@@ -26,7 +44,10 @@ function User() {
                     <p className="account-amount-description">Available Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <Button
+                        buttonText="View transactions"
+                        actionOnClick={()=>{}}
+                    />
                 </div>
             </section>
             <section className="account">
@@ -36,7 +57,10 @@ function User() {
                     <p className="account-amount-description">Available Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <Button
+                        buttonText="View transactions"
+                        actionOnClick={()=>{}}
+                    />
                 </div>
             </section>
             <section className="account">
@@ -46,7 +70,10 @@ function User() {
                     <p className="account-amount-description">Current Balance</p>
                 </div>
                 <div className="account-content-wrapper cta">
-                    <button className="transaction-button">View transactions</button>
+                    <Button
+                        buttonText="View transactions"
+                        actionOnClick={()=>{}}
+                    />
                 </div>
             </section>
         </main>

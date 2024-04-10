@@ -11,21 +11,29 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
 import Error from '../components/Error';
 
+import { getToken } from "../features/auth/authUtils";
+
 const App = () => {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sign-in" element={<Signin />} />
-          <Route path="/user" element={<User />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
-  )
+    const token = getToken();
+
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    
+                    {/* { token && ( */}
+                        <Route path="/user" element={<User />} />
+                    {/* )} */}
+
+                    <Route path="/" element={<Home />} />
+                    <Route path="/sign-in" element={<Signin />} />
+                    <Route path="*" element={<Error />} />
+                </Routes>
+                <Footer />
+            </BrowserRouter>
+        </div>
+    )
 }
 
 export default App

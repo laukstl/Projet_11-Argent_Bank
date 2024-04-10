@@ -39,7 +39,10 @@ const userSlice = createSlice({
             state.userName = action.payload.userName;
         },
         wipeUserInfo(state) {
-            state = initialState;
+            // state = initialState; // don't work
+            return initialState; // on fait confiance à immer...
+            // return { ...initialState}; // work
+            // Object.assign(state, initialState); // work itoo
         },
     },
 });
@@ -48,3 +51,4 @@ export default userSlice.reducer;
 export const { updateUserInfo, wipeUserInfo } = userSlice.actions;
 
 export const selectFirstName = (state: RootState) => state.user.firstName
+export const selectUserInfo = (state: RootState) => state.user

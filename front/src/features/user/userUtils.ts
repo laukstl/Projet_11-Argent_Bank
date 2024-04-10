@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../store/hooks';
-import { useGetUserProfileQuery } from '../../features/user/userApiExtension';
-import { getTokenFromLocalStorage } from '../../features/auth/authUtils';
+import { useGetUserProfileQuery } from '../../api/userApiExtension';
+import { getToken } from '../../features/auth/authUtils';
 import { updateUserInfo } from '../../features/user/userSlice';
 
 export const useFetchUserProfile = () => {
     const dispatch = useAppDispatch();
-    const token = getTokenFromLocalStorage();
+    const token = getToken();
     const userProfile = useGetUserProfileQuery(token);
 
     useEffect(() => {
