@@ -12,7 +12,7 @@ export interface initialUserStateType {
     id: string | null;
     lastName: string | null;
     updateAt: string | null;
-    userName: string | null;
+    userName: string | undefined;
 }
 
 const initialState: initialUserStateType = {
@@ -22,7 +22,7 @@ const initialState: initialUserStateType = {
     id: null,
     lastName: null,
     updateAt: null,
-    userName: null,
+    userName: undefined,
 }
 
 const userSlice = createSlice({
@@ -44,11 +44,16 @@ const userSlice = createSlice({
             // return { ...initialState}; // work
             // Object.assign(state, initialState); // work itoo
         },
+        updateUserName(state, action: PayloadAction<string>) {
+            state.userName = action.payload;
+        }
     },
 });
 
 export default userSlice.reducer;
-export const { updateUserInfo, wipeUserInfo } = userSlice.actions;
+export const { updateUserInfo, wipeUserInfo, updateUserName } = userSlice.actions;
 
 export const selectFirstName = (state: RootState) => state.user.firstName
+export const selectLastName = (state: RootState) => state.user.lastName
+export const selectUserName = (state: RootState) => state.user.userName
 export const selectUserInfo = (state: RootState) => state.user

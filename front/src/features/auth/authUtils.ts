@@ -8,6 +8,7 @@ import { useAppSelector } from '../../store/hooks';
 import { selectIsRememberMe } from './authSlice';
 import { wipeUserInfo } from '../user/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect  } from 'react';
 
 export const useAuth = (dispatch: AppDispatch) => {
     const [loginMutation] = useLoginMutation();
@@ -45,25 +46,50 @@ export const useAuth = (dispatch: AppDispatch) => {
     return { login, logout };
 };
 
-export const getTokenFromLocalStorage = () => {
-    return localStorage.getItem('tokenID');
-};
-
-// export const getTokenFromSessionStorage = () => {
-//     return sessionStorage.getItem('tokenID');
+// export const getSessionToken = () => {
+//     const sessionToken = sessionStorage.getItem('tokenID');
+//     if (sessionToken) {
+//         return sessionToken;
+//     }
 // };
 
-export const getToken = () => {
-    return sessionStorage.getItem('tokenID') ?? localStorage.getItem('tokenID');
+// export const getPersistentToken = () => {
+//     const localToken = localStorage.getItem('tokenID');
+//     if (localToken) {
+//         return localToken;
+//     }
+// }
+
+export const useGetToken = () => {
+    const [token, setToken] = useState<any>(null);
+
+    useEffect(() => {
+        const sessionToken = sessionStorage.getItem('tokenID');
+        const localToken = localStorage.getItem('tokenID');
+        
+        const newToken = localToken || sessionToken || null;
+        setToken(newToken);
+    }, [token]);
+
+    return token;
 };
 
+export const getToken = () => {
+    let token = null;
+    const sessionToken = sessionStorage.getItem('tokenID');
+    const localToken = localStorage.getItem('tokenID');
 
-export const checkPersistentToken = () => {
-    const token = getTokenFromLocalStorage();
-    if (token) {
-        console.log(token)
+    if (localToken) {
+        token = localToken;
+    } else if (sessionToken) {
+        token = sessionToken;
+    } else {
+        token = null;
     }
-}
+
+    return token;
+};
+
 
 
 

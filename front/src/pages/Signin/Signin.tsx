@@ -7,6 +7,7 @@ import { useAppSelector } from '../../store/hooks';
 
 import { useAuth } from '../../features/auth/authUtils';
 import { rememberMe } from '../../features/auth/authSlice';
+// import { rememberMe, selectIsRememberMe } from '../../features/auth/authSlice';
 
 function Signin() {
     const dispatch = useAppDispatch();
@@ -17,6 +18,7 @@ function Signin() {
     };
 
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+    // const isAuthenticated = useAppSelector(selectIsRememberMe);
 
     if (isAuthenticated) {
         return <Navigate to="/user" />;

@@ -1,24 +1,51 @@
 import { api } from "./API";
 import { getToken } from '../features/auth/authUtils';
-import type { FetchArgs } from '@reduxjs/toolkit/query/react';
+// import type { FetchArgs } from '@reduxjs/toolkit/query/react';
+
+// interface apiTypes {
+//     userName: string;
+// } 
 
 const userAPI = api.injectEndpoints({
+    // tagTypes: ['UserProfile'],
     endpoints: (builder) => ({
 
+        // getUserProfile: builder.query({
+        //     query: () => ({
+        //         url: 'user/profile',
+        //         method: 'POST',
+        //         headers: { Authorization: `Bearer ${getToken()}` },
+        //     // } as FetchArgs),
+        //     } as FetchArgs),
+        // }),
+
+        // setUserName: builder.mutation<any, string>({
+        //     query: (userName) => ({
+        //         url: 'user/profile',
+        //         method: 'PUT',
+        //         body: {userName},
+        //         headers: { Authorization: `Bearer ${getToken()}` },
+        //         // invalidateTags: ['UserProfile'],
+        //     } as FetchArgs),
+        // }),
+
         getUserProfile: builder.query({
-            query: () => ({ // async ?
+            query: () => ({
                 url: 'user/profile',
                 method: 'POST',
                 headers: { Authorization: `Bearer ${getToken()}` },
-            } as FetchArgs),
+                provideTags: ['UserProfile'],
+            }),
         }),
 
-        setUserName: builder.mutation({
-            query: () => ({ // async ?
+        setUserName: builder.mutation<any, string>({
+            query: (userName) => ({
                 url: 'user/profile',
                 method: 'PUT',
+                body: {userName},
                 headers: { Authorization: `Bearer ${getToken()}` },
-            } as FetchArgs),
+                invalidateTags: ['UserProfile'],
+            }),
         }),
 
     }),

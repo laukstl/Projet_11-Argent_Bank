@@ -1,16 +1,24 @@
 import "./Button.scss";
 
-interface ButtonType {
+interface ButtonPropsType {
     buttonText: string;
-    actionOnClick: () => void;
+    type: "button" | "submit" | "reset" | undefined;
+    actionOnClick: any;
     isActivated?: boolean;
 }
 
-function Button({buttonText, actionOnClick, isActivated = false}:ButtonType) {
+Button.defaultProps = {
+    buttonText: "Click!",
+    type: "button",
+    actionOnClick: () => {},
+    isActivated: false,
+};
+
+function Button({buttonText, type, actionOnClick, isActivated}: ButtonPropsType) {
     return <>
         <button
             className="button"
-            type="button"
+            type={type}
             onClick={actionOnClick}
             disabled={isActivated}
         >{buttonText}</button>
