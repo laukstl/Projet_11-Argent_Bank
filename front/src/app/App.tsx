@@ -1,7 +1,8 @@
-// NOTE: Au rendu final : Optimiser les images
+// // NOTE: Au rendu final : Optimiser les images
 
 import "./App.scss"
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useAppSelector } from '../store/hooks'
 
 import Home from '../pages/Home';
 import Signin from '../pages/Signin';
@@ -11,27 +12,24 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
 import Error from '../components/Error';
 
-// import { getToken } from "../features/auth/authUtils";
 import { useGetToken } from "../features/auth/authUtils";
+import { useFetchUserProfile } from "../features/user/userUtils";
 
 const App = () => {
-    // const token = getToken();
     const token = useGetToken();
+
+    useFetchUserProfile();
+
+    const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 
     return (
         <div className="App">
             <BrowserRouter>
                 <Header />
                 <Routes>
-                    
-                    { token ? (
-                        <Route path="/user" element={<User />} /> // route protégée
-                    ) : (
-                        <Route path="/user" element={<Navigate to="/sign-in" replace />} />
-                    )}
-
                     <Route path="/" element={<Home />} />
-                    <Route path="/sign-in" element={<Signin />} />
+                    <Route path="/user" element={token ? <User /> : <Navigate to="/sign-in" replace />} />
+                    <Route path="/sign-in" element={isAuthenticated ? <Navigate to="/user" replace /> : <Signin />} />
                     <Route path="*" element={<Error />} />
                 </Routes>
                 <Footer />

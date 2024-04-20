@@ -3,7 +3,6 @@
 
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-// import { useAppSelector } from '../../store/hooks';
 import type { RootState } from '../../store/store';
 
 export interface initialAuthStateType {

@@ -3,20 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { useAuth } from '../../features/auth/authUtils';
 import { selectFirstName, selectUserName } from '../../features/user/userSlice';
-import { useFetchUserProfile } from '../../features/user/userUtils';
-import { useEffect } from 'react';
 
 function Header() {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const { logout } = useAuth(dispatch);
-    // const [ data, setData ] = useState(null);
 
     const firstName = useAppSelector(selectFirstName);
-    // const userName = useAppSelector(selectUserName);
-    // console.log(useFetchUserProfile().body.userName)
-    // const userName = useFetchUserProfile().data;
-    const userName = useFetchUserProfile().body.userName;
+    const userName = useAppSelector(selectUserName);
 
     return (
         <nav className="main-nav">
@@ -45,7 +39,7 @@ function Header() {
                 <div className='navLink'>
                     <NavLink
                         className="main-nav-item"
-                        to="/sign-in"
+                        to="/user"
                     >
                         <i className="fa fa-user-circle"></i>
                         <span>&nbsp;{userName} ( {firstName} )</span>

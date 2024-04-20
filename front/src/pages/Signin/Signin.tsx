@@ -1,28 +1,48 @@
 import './Signin.scss';
 import Button from '../../components/Button'
 
-import { useAppDispatch } from '../../store/hooks';
-import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
+import { useState } from 'react';
 
-import { useAuth } from '../../features/auth/authUtils';
+import { useAppDispatch } from '../../store/hooks';
+
+import { useAuth, testEmail, testPassword } from '../../features/auth/authUtils';
 import { rememberMe } from '../../features/auth/authSlice';
-// import { rememberMe, selectIsRememberMe } from '../../features/auth/authSlice';
 
 function Signin() {
     const dispatch = useAppDispatch();
     const { login } = useAuth(dispatch);
+    const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+    const [isPasswordlValid, setIsPasswordValid] = useState<boolean>(false);
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
     const handleSignInClick = () => {
-        login("tony@stark.com", "password123");
+        // login("tony@stark.com", "password123");
+        // login("steve@rogers.com", "password456");
+        if ( isEmailValid && isPasswordlValid) {
+            login(email, password);
+        }
     };
 
-    const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-    // const isAuthenticated = useAppSelector(selectIsRememberMe);
+    const handleUserNameInput = (email:string) => {
+        const testEmailInput = testEmail(email);
+        if (testEmailInput) {
+            setIsEmailValid(true);
+            setEmail(email);
+        } else {
+            setIsEmailValid(false);
+        }
+    };
 
-    if (isAuthenticated) {
-        return <Navigate to="/user" />;
-    }
+    const handlePasswordInput = (password:string) => {
+        const testPasswordInput = testPassword(password);
+        if (testPasswordInput) {
+            setIsPasswordValid(true);
+            setPassword(password);
+        } else {
+            setIsPasswordValid(false);
+        }
+    };
 
     return (
         <main className="main bg-dark">
@@ -30,21 +50,25 @@ function Signin() {
             <i className='fa fa-user-circle sign-in-icon'></i>
             <h1>Sign In</h1>
             <form>
-                <div className='input-wrapper'>
-                    <label>Username
+                <div className={`input-wrapper ${isEmailValid ? '' : 'notValid'}`}>
+                    <label>Email
                         <input
                             type="text"
                             id="username"
                             autoComplete="username"
+                            onChange={
+                                (e) => {handleUserNameInput(e.target.value)}}
                         />
                     </label>
                 </div>
-                <div className='input-wrapper'>
+                <div className={`input-wrapper ${isPasswordlValid ? '' : 'notValid'}`}>
                     <label>Password
                         <input
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={
+                                (e) => {handlePasswordInput(e.target.value)}}
                         />
                     </label>
                 </div>

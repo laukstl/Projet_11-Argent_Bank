@@ -2,31 +2,30 @@ import './User.scss';
 import Button from '../../components/Button';
 
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-// import { Navigate } from 'react-router-dom';
 import { useFetchUserProfile } from '../../features/user/userUtils';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import { selectIsEditing, setIsEditing } from '../../features/ui/uiSlice';
+import { selectFirstName, selectLastName } from '../../features/user/userSlice';
 
 function User() {
     const dispatch = useAppDispatch();
     const isEditing = useAppSelector(selectIsEditing);
+
     const handleEditNameClick = () => {
         dispatch(setIsEditing());
     };
 
-    // const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-    useFetchUserProfile();
+    const firstName = useAppSelector(selectFirstName);
+    const lastName = useAppSelector(selectLastName);
 
-    // if (!isAuthenticated) {
-    //     return <Navigate to="/sign-in" />; // protection supplémentaire
-    // }
+    useFetchUserProfile();
 
     return (
         <main className="main bg-dark">
             <div className="header">
                 {!isEditing ? (
                     <>
-                        <h1>Welcome back<br />Tony Jarvis!</h1>
+                        <h1>Welcome back<br />{firstName} {lastName}!</h1>
                         <Button
                             buttonText="Edit Name"
                             actionOnClick={handleEditNameClick}

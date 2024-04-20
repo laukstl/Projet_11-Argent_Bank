@@ -22,3 +22,10 @@
 - A faire: traquer les dispatch à transfo en useAppDispatch ( pour la gestion des middlewares et des types )
 - A faire: compléter la gestion des token ( connection persistante )
 - ...
+
+0.4 finalement, RTKQ saved !
+
+- amélioration de la gestion des connections persistentes (tokens)
+- débug des rollback innoportuns
+- ajout des tests de validité d'email/password
+- amélioration des redirections automatiques

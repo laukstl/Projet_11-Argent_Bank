@@ -5,112 +5,113 @@ info:
   version: '0.0.1'
   termsOfService: 'http://swagger.io/terms/'
 host: localhost:3001
-basePath: /api/v1
+basePath: /api/v2
 schemes:
   - http
 
 # ------------------------------------------------------------------------------
 
 paths:
-  /user/transactions/{transactions_id}:
-    post:
+  /user/transactions:
+    get:
       security:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: Get User Transaction
-      description: API for fetching user Transaction
-      # produces:
-      #   - application/json
+      summary: Obtenir toutes les transactions de l'utilisateur pour le mois en cours
+      description: API pour récupérer toutes les transactions de l'utilisateur pour le mois en cours, groupées par compte
+      parameters:
+        - name: month
+          in: query
+          description: Mois pour lequel récupérer les transactions (format : MM/YYYY)
+          required: true
+          type: string
       responses:
         '200':
-          description: Transaction fetched successfully
+          description: Transactions récupérées avec succès
           schema:
-            $ref: '#/definitions/ApiResponse'
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
         '400':
-          description: Invalid Fields
+          description: Mois invalide
         '500':
-          description: Internal Server Error
+          description: Erreur interne du serveur
+
+  /user/transactions/{transaction_id}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
+      summary: Obtenir les détails d'une transaction d'utilisateur
+      description: API pour récupérer les détails d'une transaction d'utilisateur
+      parameters:
+        - name: transaction_id
+          in: path
+          description: ID de la transaction à récupérer
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Détails de la transaction récupérés avec succès
+          schema:
+            $ref: '#/definitions/Transaction'
+        '404':
+          description: Transaction non trouvée
+        '500':
+          description: Erreur interne du serveur
+
     put:
       security:
         - Bearer: []
       tags:
         - Transaction Module
-      summary: Get User Transaction
-      description: API for updating user Transaction
+      summary: Mettre à jour une transaction d'utilisateur
+      description: API pour mettre à jour une transaction d'utilisateur
       parameters:
         - in: body
           name: body
-          description: Transaction Payload
+          description: Données de la transaction à mettre à jour
           required: true
           schema:
-            $ref: '#/definitions/User'
+            $ref: '#/definitions/Transaction'
       produces:
         - application/json
       responses:
         '200':
-          description: Transaction updated successfully
+          description: Transaction mise à jour avec succès
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/Transaction'
         '400':
-          description: Invalid Fields
+          description: Données de transaction invalides
+        '404':
+          description: Transaction non trouvée
         '500':
-          description: Internal Server Error
+          description: Erreur interne du serveur
 
 # ------------------------------------------------------------------------------
 
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header
 definitions:
-  User:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
-      userName:
-        type: string
-        description: user public name
-  Login:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-  ApiResponse:
+  Transaction:
     type: object
     properties:
-      status:
-        type: integer
-      message:
+      id:
         type: string
-      body:
-        type: object
-        properties:
-          id:
-            type: string
-          email:
-            type: string
-  LoginResponse:
-    type: object
-    properties:
-      token:
+        description: Identifiant unique de la transaction
+      accountId:
         type: string
-  UserProfile:
-    type: object
-    properties:
-      userName:
+        description: Identifiant du compte associé à la transaction
+      amount:
+        type: number
+        description: Montant de la transaction
+      description:
         type: string
+        description: Description de la transaction
+      date:
+        type: string
+        format: date
+        description: Date de la transaction
+      category:
+        type: string
+        description: Catégorie de la transaction

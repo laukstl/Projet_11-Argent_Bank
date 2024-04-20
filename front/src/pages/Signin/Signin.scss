@@ -30,6 +30,12 @@
             padding: 5px;
             font-size: 1.2rem;
             border-radius: 3px;
+            // background: lightgreen;
+        }
+
+        &.notValid input{
+            border: 1px solid red;
+            background: #f8f0f0;
         }
     }
 

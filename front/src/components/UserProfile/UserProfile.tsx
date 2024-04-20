@@ -14,21 +14,26 @@ function UserProfile() {
 
     const dispatch = useAppDispatch();
 
-    const [setUserName] = useSetUserNameMutation();
-    const data = useSetUserNameMutation();
+    const [setUserName] = useSetUserNameMutation({
+        // refetchOnMountOrArgChange: true,
+    });
 
-    const handleFormSubmit = (e:any) => {
-        console.log(data)
+    const handleFormSubmit = async (e:any) => {
         e.preventDefault();
-
+    
         const form = e.target;
-        const userNameInput = form.userNameInput.value
+        const userNameInput = form.userNameInput.value;
+    
+        try {
+            await setUserName(userNameInput);
+            dispatch(updateUserName(userNameInput));
 
-        dispatch(updateUserName(userNameInput));
-        setUserName(userNameInput);
-
-        dispatch(setIsEditing());
+            dispatch(setIsEditing());
+        } catch (error) {
+            console.error("Une erreur s'est produite lors de la mise à jour du nom d'utilisateur :", error);
+        }
     };
+    
 
     const handleCancelButtonClick = () => {
         dispatch(setIsEditing());

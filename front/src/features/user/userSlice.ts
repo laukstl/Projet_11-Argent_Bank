@@ -30,13 +30,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         updateUserInfo(state, action: PayloadAction<initialUserStateType>) {
-            state.createdAt = action.payload.createdAt;
-            state.email = action.payload.email;
-            state.firstName = action.payload.firstName;
-            state.id = action.payload.id;
-            state.lastName = action.payload.lastName;
-            state.updateAt = action.payload.updateAt;
-            state.userName = action.payload.userName;
+            return action.payload;
         },
         wipeUserInfo(state) {
             // state = initialState; // don't work
