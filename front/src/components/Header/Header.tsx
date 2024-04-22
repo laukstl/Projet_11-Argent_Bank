@@ -3,11 +3,14 @@ import { NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { useAuth } from '../../features/auth/authUtils';
 import { selectFirstName, selectUserName } from '../../features/user/userSlice';
+import { useFetchUserProfile } from "../../features/user/userUtils";
 
 function Header() {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const { logout } = useAuth(dispatch);
+    
+    useFetchUserProfile();
 
     const firstName = useAppSelector(selectFirstName);
     const userName = useAppSelector(selectUserName);
@@ -20,7 +23,7 @@ function Header() {
             >
                 <img
                     className="main-nav-logo-image"
-                    src=".\src\assets\argentBankLogo.png"
+                    src=".\src\assets\argentBankLogo.webp"
                     alt="Argent Bank Logo"
                 />
                 <h1 className="sr-only">Argent Bank</h1>

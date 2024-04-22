@@ -30,7 +30,7 @@ function UserProfile() {
 
             dispatch(setIsEditing());
         } catch (error) {
-            console.error("Une erreur s'est produite lors de la mise à jour du nom d'utilisateur :", error);
+            throw new Error("Une erreur s'est produite lors de la mise à jour du nom d'utilisateur : " + error);
         }
     };
     
@@ -44,10 +44,8 @@ function UserProfile() {
             <div className="title">Edit user info</div>
             <label>
                 User name: <input
-                    // value={userNameInput}
                     name="userNameInput"
                     defaultValue={userName}
-                // onChange={(e) => setUserNameInput(e.target.value)}
                 />
             </label>
             <label>
@@ -61,7 +59,6 @@ function UserProfile() {
                 <Button
                     type="submit"
                     buttonText="Save"
-                    // actionOnClick={handleSubmitButtonClick}
                 />
 
                 <Button

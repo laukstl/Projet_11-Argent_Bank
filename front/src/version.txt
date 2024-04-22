@@ -23,9 +23,18 @@
 - A faire: compléter la gestion des token ( connection persistante )
 - ...
 
+
 0.4 finalement, RTKQ saved !
 
-- amélioration de la gestion des connections persistentes (tokens)
+- amélioration de la gestion des connections persistantes (tokens)
 - débug des rollback innoportuns
 - ajout des tests de validité d'email/password
 - amélioration des redirections automatiques
+
+
+0.5 finalisation
+
+- debug de la connection persistante
+- déplacement de l'auth dans le header ( en remplacement du middleware d'auth futur )
+- ajout d'un favicon
+- optimisation des images ( resize et format. gains: de 224kb à 68kb )

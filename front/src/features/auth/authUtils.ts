@@ -84,20 +84,18 @@ export const testPassword = (password:string) => {
 }
 
 export const testToken = () => {
-    // const isTokenExpired = () => {
-    //     const token = localStorage.getItem('token');
-    //     if (!token) {
-    //         return true;
-    //     }
-    //     const tokenExpiration = new Date(JSON.parse(atob(token.split('.')[1])).exp * 1000);
-    //     return tokenExpiration < new Date();
-    // };
+    const isTokenExpired = () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            return true;
+        }
+        const tokenExpiration = new Date(JSON.parse(atob(token.split('.')[1])).exp * 1000);
+        return tokenExpiration < new Date();
+    };
 
-    //   if (isTokenExpired()) {
-    //     // Rediriger vers la page de connexion ou renouveler le token
-    //     // ...
-    //   } else {
-    //     // Le token est toujours valide, poursuivre avec l'application
-    //     // ...
-    //   }
+      if (isTokenExpired()) {
+        // navigate to Login
+      } else {
+        // renew token
+      }
 }

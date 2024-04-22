@@ -13,13 +13,9 @@ import Footer from '../components/Footer';
 import Error from '../components/Error';
 
 import { useGetToken } from "../features/auth/authUtils";
-import { useFetchUserProfile } from "../features/user/userUtils";
 
 const App = () => {
     const token = useGetToken();
-
-    useFetchUserProfile();
-
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 
     return (
