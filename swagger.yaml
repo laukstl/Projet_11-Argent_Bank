@@ -112,7 +112,7 @@ paths:
       parameters:
         - name: month
           in: query
-          description: Mois pour lequel récupérer les transactions (format : MM/YYYY)
+          description: "Mois pour lequel récupérer les transactions (format : MM/YYYY)"
           required: true
           type: string
       responses:
