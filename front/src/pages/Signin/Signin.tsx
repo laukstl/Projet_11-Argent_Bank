@@ -10,16 +10,24 @@ import { rememberMe } from '../../features/auth/authSlice';
 function Signin() {
     const dispatch = useAppDispatch();
     const { login } = useAuth(dispatch);
-    const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
-    const [isPasswordlValid, setIsPasswordValid] = useState<boolean>(false);
+    const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
+    const [isPasswordlValid, setIsPasswordValid] = useState<boolean>(true);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [generalErrorMessage, setGeneralErrorMessage] = useState('');
 
-    const handleSignInClick = () => {
+    const handleSignInClick = async () => {
         // login("tony@stark.com", "password123");
         // login("steve@rogers.com", "password456");
-        if ( isEmailValid && isPasswordlValid) {
-            login(email, password);
+        try {
+            if ( isEmailValid && isPasswordlValid) {
+                const loginResponse = await login(email, password);
+                if (loginResponse) {
+                    setGeneralErrorMessage(loginResponse);
+                }
+            }
+        } catch (error:any) {
+            setGeneralErrorMessage('Error during login: ' + error);
         }
     };
 
@@ -48,6 +56,7 @@ function Signin() {
                     <section className='sign-in-content'>
             <i className='fa fa-user-circle sign-in-icon'></i>
             <h1>Sign In</h1>
+            <div className='generalErrorMessage'>{generalErrorMessage}</div>
             <form>
                 <div className={`input-wrapper ${isEmailValid ? '' : 'notValid'}`}>
                     <label>Email
@@ -59,6 +68,8 @@ function Signin() {
                                 (e) => {handleUserNameInput(e.target.value)}}
                         />
                     </label>
+                    <div className='errorMessageTitle'>{ isEmailValid ? '' : 'Invalid email format'}</div>
+                    <div className='errorMessage'>{ isEmailValid ? '' : 'expected: userName@url.com'}</div>
                 </div>
                 <div className={`input-wrapper ${isPasswordlValid ? '' : 'notValid'}`}>
                     <label>Password
@@ -70,6 +81,9 @@ function Signin() {
                                 (e) => {handlePasswordInput(e.target.value)}}
                         />
                     </label>
+                    <div className='errorMessageTitle'>{ isPasswordlValid ? '' : 'Invalid password'}</div>
+                    <div className='errorMessage'>{ isPasswordlValid ? '' : 'Expected : Minimum 8 characters, including at least 1 letter and 1 digit'}</div>
+
                 </div>
                 <div className='input-remember'>
 

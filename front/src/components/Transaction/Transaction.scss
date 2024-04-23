@@ -1,0 +1,45 @@
+.main {
+
+    & .account_detail {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 2rem;
+        background-color: rgb(61, 60, 60);
+        color: rgb(238, 236, 236);
+
+        & .close {
+            font-size: 4rem;
+        }
+    }
+
+    .detail {
+        display: flex;
+        justify-content: center;
+
+        & .detail_wrapper {
+            width: 80%;
+
+            & table {
+                border-collapse: separate;
+                border-spacing: 0;
+            }
+
+            & .date_column {
+                width: 150px;
+            }
+
+            & .desc_column {
+                width: 550px;
+            }
+
+            & .amount_column {
+                width: 100px;
+            }
+
+            & .balance_column {
+                width: 100px;
+            }
+        }
+    }
+}

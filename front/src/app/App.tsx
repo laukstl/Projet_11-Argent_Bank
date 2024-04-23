@@ -1,12 +1,12 @@
-// // NOTE: Au rendu final : Optimiser les images
-
 import "./App.scss"
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks'
 
 import Home from '../pages/Home';
 import Signin from '../pages/Signin';
 import User from '../pages/User';
+import Transaction from "../components/Transaction";
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
@@ -25,6 +25,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/user" element={token ? <User /> : <Navigate to="/sign-in" replace />} />
+                    <Route path="/transaction" element={token ? <Transaction /> : <Navigate to="/sign-in" replace />} />
                     <Route path="/sign-in" element={isAuthenticated ? <Navigate to="/user" replace /> : <Signin />} />
                     <Route path="*" element={<Error />} />
                 </Routes>

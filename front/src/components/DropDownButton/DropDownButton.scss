@@ -1,0 +1,67 @@
+.dropdownButton {
+    flex-grow: 1;
+
+    & .button {
+        width: 100%;
+        height: 54px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #61B37B;
+        border-radius: 0px;
+        border: 0px;
+        height: 30px;
+
+        & .date_column {
+            width: 150px;
+        }
+        & .desc_column {
+            width: 550px;
+        }
+        & .amount_column {
+            width: 100px;
+        }
+        & .balance_column {
+            width: 100px;
+        }
+
+        & .buttonArrow {
+            width: 32px;
+            margin-right: 15px;
+
+            @media (max-width: 879px) {
+                width: 23px;
+                margin-right: 2px;
+            }
+
+            &.spin {
+                transform: rotate(180deg);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            &.spin-reverse {
+                transform: rotate(0deg);
+                transition: transform 0.3s ease-in-out;
+            }
+        }
+    }
+
+    & .text {
+        text-align: left;
+        background-color: #61B37B;
+        font-weight: 100;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+        color: white;
+        padding-left: 1rem;
+
+        &.hidden {
+            max-height: 0;
+        }
+
+        &.shown {
+            max-height: 170px;
+        }
+    }
+}

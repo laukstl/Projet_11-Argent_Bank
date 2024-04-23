@@ -1,13 +1,16 @@
 import './User.scss';
 import Button from '../../components/Button';
 
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
+
 import { useFetchUserProfile } from '../../features/user/userUtils';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import { selectIsEditing, setIsEditing } from '../../features/ui/uiSlice';
 import { selectFirstName, selectLastName } from '../../features/user/userSlice';
 
 function User() {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isEditing = useAppSelector(selectIsEditing);
 
@@ -46,7 +49,7 @@ function User() {
                 <div className="account-content-wrapper cta">
                     <Button
                         buttonText="View transactions"
-                        actionOnClick={() => { }}
+                        actionOnClick={() => { navigate('/transaction'); }}
                     />
                 </div>
             </section>

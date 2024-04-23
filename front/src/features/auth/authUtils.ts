@@ -8,7 +8,6 @@ import { useAppSelector } from '../../store/hooks';
 import { selectIsRememberMe } from './authSlice';
 import { wipeUserInfo } from '../user/userSlice';
 import { useNavigate } from 'react-router-dom';
-// import { useState, useEffect  } from 'react';
 
 export const useAuth = (dispatch: AppDispatch) => {
     const [loginMutation] = useLoginMutation();
@@ -27,11 +26,11 @@ export const useAuth = (dispatch: AppDispatch) => {
                 }
                 dispatch(setIsAuth());
                } else {
-                throw new Error('Login failed: ' + result.error.data.message);
+                return result.error.data.message
             }
         } catch (error:any) {
             dispatch(loginFailure());
-            throw new Error('Login failed: ' + error);
+            return error
         }
     }
 
