@@ -43,3 +43,9 @@
 - ajout de messages d'erreurs de connections/input pour une meilleure expérience utilisateur
 - ajout d'une page test de transaction
 - nettoyage des fichiers superflus
+
+
+0.7b hotfix
+- ajout de wipeInfo/redirection en cas improbable de perte de token en plein milieu d'une opération
+- refacto Home.tsx pour création compo réutilisable
+- refacto User.tsx pour création compo réutilisable
