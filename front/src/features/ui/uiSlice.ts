@@ -1,7 +1,6 @@
 
 // gestion de l'interface graphique
 
-// import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store/store';
 import { createSlice } from '@reduxjs/toolkit';
 

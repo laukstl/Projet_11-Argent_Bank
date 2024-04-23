@@ -2,7 +2,7 @@ import "./Error.scss";
 import { useNavigate } from 'react-router-dom';
 
 const Error = () => {
-    const navigate = useNavigate(); // Récupère la fonction de navigation
+    const navigate = useNavigate();
 
     const handleButton = () => {navigate('/');};
 
@@ -11,7 +11,7 @@ const Error = () => {
             <div className="ErrorNumber">404</div>
             <div className="ErrorMessage">Page Not Found</div>
             <p>Oops! The page you're looking for doesn't exist.</p>
-            <button onClick={handleButton}>Retour à la page d'accueil</button>
+            <button onClick={handleButton}>Back to homepage</button>
         </div>
     );
 };

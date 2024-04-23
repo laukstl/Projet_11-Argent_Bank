@@ -16,7 +16,7 @@ export const useAuth = (dispatch: AppDispatch) => {
 
     const login = async (email: string, password: string) => {
         try {
-            const result:any = await loginMutation({ email, password });
+            const result: any = await loginMutation({ email, password });
             if ('data' in result) {
                 const { token } = result.data.body;
                 if (!rememberMe) {
@@ -25,10 +25,10 @@ export const useAuth = (dispatch: AppDispatch) => {
                     window.localStorage.setItem("tokenID", token);
                 }
                 dispatch(setIsAuth());
-               } else {
+            } else {
                 return result.error.data.message
             }
-        } catch (error:any) {
+        } catch (error: any) {
             dispatch(loginFailure());
             return error
         }
@@ -41,13 +41,13 @@ export const useAuth = (dispatch: AppDispatch) => {
         dispatch(unsetIsAuth());
         navigate('/');
     }
-    
+
     return { login, logout };
 };
 
 export const useGetToken = () => {
-        const sessionToken = sessionStorage.getItem('tokenID');
-        const localToken = localStorage.getItem('tokenID');
+    const sessionToken = sessionStorage.getItem('tokenID');
+    const localToken = localStorage.getItem('tokenID');
 
     return localToken || sessionToken || null;
 };
@@ -68,15 +68,15 @@ export const getToken = () => {
     return token;
 };
 
-export const testEmail = (email:string) => {
+export const testEmail = (email: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
 }
 
-export const testPassword = (password:string) => {
+export const testPassword = (password: string) => {
     // Au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et une longueur minimale de 8 caractères
     // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    
+
     // Au moins 8 caractères, une lettre minuscule, un chiffre ( pour coller au backend ^^ )
     const passwordRegex = /^(?=.*[a-z])(?=.*\d)[a-zA-Z\d]{8,}$/
     return passwordRegex.test(password);
@@ -92,9 +92,9 @@ export const testToken = () => {
         return tokenExpiration < new Date();
     };
 
-      if (isTokenExpired()) {
+    if (isTokenExpired()) {
         // navigate to Login
-      } else {
+    } else {
         // renew token
-      }
+    }
 }

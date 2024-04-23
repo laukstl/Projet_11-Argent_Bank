@@ -9,7 +9,7 @@ function Header() {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const { logout } = useAuth(dispatch);
-    
+
     useFetchUserProfile();
 
     const firstName = useAppSelector(selectFirstName);

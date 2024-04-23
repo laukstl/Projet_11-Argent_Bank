@@ -13,26 +13,21 @@
         font-size: 2rem;
         font-weight: 500;
         margin-bottom: 15px;
-    };
+    }
 
     & label {
-        // color: red;
-        
-
         & input {
             padding: 7px;
             border-radius: 5px;
             border: 1px solid #C4C4C4;
             font-size: 1rem;
             width: 150px;
-            
- 
+
+
             &.disabled {
                 background-color: #E6E6E6;
             }
         }
-
-
     }
 
     & .buttons {
@@ -48,5 +43,4 @@
             padding: 15px;
         }
     }
-
 }

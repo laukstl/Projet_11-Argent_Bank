@@ -22,32 +22,28 @@ function UserProfile() {
         // refetchOnMountOrArgChange: true,
     });
 
-    const handleFormSubmit = async (e:any) => {
+    const handleFormSubmit = async (e: any) => {
         e.preventDefault();
-    
+
         const form = e.target;
         const userNameInput = form.userNameInput.value;
         const token = getToken();
-    
+
         if (token) {
             try {
                 await setUserName(userNameInput);
-                // const response = await setUserName(userNameInput);
-                // if (response.error.status === 200) {
-                    dispatch(updateUserName(userNameInput));
-                    dispatch(setIsEditing());
-                // } else {
-                    // setSubmitErrorMessage("Non autorisé"+ response.error.status)
-                // }
+
+                dispatch(updateUserName(userNameInput));
+                dispatch(setIsEditing());
+
             } catch (error) {
-                throw new Error("Une erreur s'est produite lors de la mise à jour du nom d'utilisateur : " + error);
+                throw new Error("An error occurred while updating the username: " + error);
             }
         } else {
             logout();
-            alert("Oops ! Il semblerait que votre token ait disparu ! Vous allez être redirigé sur la page d'accueil.");
+            alert("Oops! It seems that your token has disappeared! You will be redirected to the homepage");
         }
     };
-    
 
     const handleCancelButtonClick = () => {
         dispatch(setIsEditing());

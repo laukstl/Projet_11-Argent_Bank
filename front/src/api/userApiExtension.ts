@@ -17,7 +17,7 @@ const userAPI = api.injectEndpoints({
             query: (userName) => ({
                 url: 'user/profile',
                 method: 'PUT',
-                body: {userName},
+                body: { userName },
                 headers: { Authorization: `Bearer ${getToken()}` },
                 invalidatesTags: ['UserProfile'],
             }),
@@ -25,6 +25,6 @@ const userAPI = api.injectEndpoints({
 
     }),
     overrideExisting: false,
-  })
-  
-    export const { useGetUserProfileQuery, useSetUserNameMutation } = userAPI
+})
+
+export const { useGetUserProfileQuery, useSetUserNameMutation } = userAPI

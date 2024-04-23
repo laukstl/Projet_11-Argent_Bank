@@ -17,6 +17,6 @@ const loginEndpoint = api.injectEndpoints({
 
     }),
     overrideExisting: false,
-  })
-  
-  export const { useLoginMutation } = loginEndpoint
+})
+
+export const { useLoginMutation } = loginEndpoint

@@ -16,6 +16,7 @@ function Transaction() {
 
             <section className="detail">
                 <div className="detail_wrapper">
+
                     <table>
                         <tbody>
                             <tr>
@@ -26,6 +27,7 @@ function Transaction() {
                             </tr>
                         </tbody>
                     </table>
+
                     <DropDownButton
                         date="27/02/20"
                         description="Golden Sun Bakery"
@@ -55,6 +57,7 @@ function Transaction() {
                             </tbody>
                         </table>
                     />
+
                     <DropDownButton
                         date="27/02/20"
                         description="Golden Sun Bakery"
@@ -84,6 +87,7 @@ function Transaction() {
                             </tbody>
                         </table>
                     />
+
                     <DropDownButton
                         date="27/02/20"
                         description="Golden Sun Bakery"
@@ -113,6 +117,7 @@ function Transaction() {
                             </tbody>
                         </table>
                     />
+
                     <DropDownButton
                         date="27/02/20"
                         description="Golden Sun Bakery"

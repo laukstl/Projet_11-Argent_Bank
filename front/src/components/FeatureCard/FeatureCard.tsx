@@ -14,7 +14,7 @@ FeatureCard.defaultProps = {
     text: 'Card text',
 };
 
-function FeatureCard({img, imgAlt, title, text}: featureCardPropsType) {
+function FeatureCard({ img, imgAlt, title, text }: featureCardPropsType) {
     return (
         <div className="feature-item">
             <img

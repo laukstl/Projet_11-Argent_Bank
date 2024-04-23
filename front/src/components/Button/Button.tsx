@@ -10,11 +10,11 @@ interface ButtonPropsType {
 Button.defaultProps = {
     buttonText: "Click!",
     type: "button",
-    actionOnClick: () => {},
+    actionOnClick: () => { },
     isActivated: false,
 };
 
-function Button({buttonText, type, actionOnClick, isActivated}: ButtonPropsType) {
+function Button({ buttonText, type, actionOnClick, isActivated }: ButtonPropsType) {
     return <>
         <button
             className="button"
