@@ -119,7 +119,7 @@ paths:
                     schema:
                         type: array
                         items:
-                            $ref: "#/definitions/Transaction"
+                            $ref: "#/definitions/Transactions"
                 "400":
                     description: Invalid Month
                 "500":
@@ -142,7 +142,9 @@ paths:
                 "200":
                     description: Transaction details retrieved successfully
                     schema:
-                        $ref: "#/definitions/Transaction"
+                        $ref: "#/definitions/TransactionDetail"
+                "400":
+                    description: Invalid Transaction id
                 "404":
                     description: Transaction not found
                 "500":
@@ -161,16 +163,16 @@ paths:
                   description: Data of the transaction to update
                   required: true
                   schema:
-                      $ref: "#/definitions/Transaction"
+                      $ref: "#/definitions/TransactionDetail"
             produces:
                 - application/json
             responses:
                 "200":
                     description: Transaction updated successfully
                     schema:
-                        $ref: "#/definitions/Transaction"
+                        $ref: "#/definitions/TransactionDetail"
                 "400":
-                    description: Invalid transaction data
+                    description: Invalid Transaction Data
                 "404":
                     description: Transaction not found
                 "500":
@@ -231,7 +233,35 @@ definitions:
         properties:
             userName:
                 type: string
-    Transaction:
+    Transactions:
+        type: object
+        properties:
+            id:
+                type: string
+                description: Unique identifier of the transaction
+            date:
+                type: string
+                format: date
+                description: Transaction date
+            description:
+                type: string
+                description: Transaction description
+            amount:
+                type: number
+                description: Transaction amount
+            balance:
+                type: number
+                description: Account balance
+            category:
+                type: string
+                description: Transaction category
+            type:
+                type: string
+                description: Transaction type
+            note:
+                type: string
+                description: Transaction note
+    TransactionDetail:
         type: object
         properties:
             id:
@@ -240,16 +270,34 @@ definitions:
             accountId:
                 type: string
                 description: ID of the account associated with the transaction
-            amount:
-                type: number
-                description: Transaction amount
-            description:
-                type: string
-                description: Transaction description
             date:
                 type: string
                 format: date
                 description: Transaction date
+            description:
+                type: string
+                description: Transaction description
+            amount:
+                type: number
+                description: Transaction amount
+            balance:
+                type: number
+                description: Account balance
             category:
                 type: string
                 description: Transaction category
+            type:
+                type: string
+                description: Transaction type
+            note:
+                type: string
+                description: Transaction note
+            statut:
+                type: string
+                description: Transaction statut (pending, completed, cancelled)
+            fees:
+                type: number
+                description: Transaction note
+            currency:
+                type: string
+                description: Transaction currency (USD, EUR)
