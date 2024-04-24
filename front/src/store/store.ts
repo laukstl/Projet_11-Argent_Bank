@@ -5,6 +5,8 @@ import uiSlice from '../features/ui/uiSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { api } from '../api/API';
+// import AuthMiddleware from '../features/auth/AuthMiddleware';
+
 
 const store = configureStore({ // RTK: set les reducers et le middleware du store
     reducer: {

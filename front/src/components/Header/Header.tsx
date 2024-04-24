@@ -3,14 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { useAuth } from '../../features/auth/authUtils';
 import { selectFirstName, selectUserName } from '../../features/user/userSlice';
-import { useFetchUserProfile } from "../../features/user/userUtils";
 
 function Header() {
     const dispatch = useAppDispatch();
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
     const { logout } = useAuth(dispatch);
-
-    useFetchUserProfile();
 
     const firstName = useAppSelector(selectFirstName);
     const userName = useAppSelector(selectUserName);

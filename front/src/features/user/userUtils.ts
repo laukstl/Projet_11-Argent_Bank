@@ -8,6 +8,7 @@ import { useGetToken } from '../auth/authUtils';
 export const useFetchUserProfile = () => {
     const token = useGetToken();
     const dispatch = useAppDispatch();
+
     const { data: userData, isSuccess } = useGetUserProfileQuery(
         null, // FIXME: Indispensable et non documenté actuellement...
         { refetchOnMountOrArgChange: true, skip: !token }, // Force la mise à jour, skip si pas de token pour l'autoconnect
