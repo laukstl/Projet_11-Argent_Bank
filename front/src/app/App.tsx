@@ -28,7 +28,7 @@ const App = () => {
                     <Route path="/" element={<Home />} />
                     <Route
                         path="/user"
-                        element={token ? <User /> : <Navigate to="/sign-in" replace />}
+                        element={token ? <User /> : <Navigate to="/sign-in" replace />} // route sécurisée
                     />
                     <Route
                         path="/transaction"

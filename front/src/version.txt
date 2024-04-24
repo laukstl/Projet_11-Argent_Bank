@@ -39,6 +39,7 @@
 - ajout d'un favicon
 - optimisation des images ( resize et format. gains: de 224kb à 68kb )
 
+
 0.6b version finale
 - ajout de messages d'erreurs de connections/input pour une meilleure expérience utilisateur
 - ajout d'une page test de transaction

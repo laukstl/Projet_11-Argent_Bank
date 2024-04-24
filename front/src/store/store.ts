@@ -6,7 +6,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { api } from '../api/API';
 
-const store = configureStore({ // set les reducers et le middleware du store
+const store = configureStore({ // RTK: set les reducers et le middleware du store
     reducer: {
         ui: uiSlice,
         auth: authSlice,

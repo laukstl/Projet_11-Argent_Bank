@@ -25,7 +25,7 @@ const authSlice = createSlice({ // RTK: inclu reducers/actions/initialstate
         loginFailure(state) {
             state.isAuthenticated = false; // passe par immer en background
         },
-        unsetIsAuth(state) {
+        unsetIsAuth(state) { // action automatiquement généré par gtk
             state.isAuthenticated = false;
         },
         rememberMe(state, action: PayloadAction<boolean>) {
