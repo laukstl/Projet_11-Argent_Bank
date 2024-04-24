@@ -23,7 +23,7 @@ function Signin() {
             if (isEmailValid && isPasswordlValid) {
                 const loginResponse = await login(email, password);
                 if (loginResponse) {
-                    setGeneralErrorMessage(loginResponse);
+                    setGeneralErrorMessage("Invalid credentials");
                 }
             }
         } catch (error: any) {

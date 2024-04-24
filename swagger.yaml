@@ -163,14 +163,14 @@ paths:
                   description: Data of the transaction to update
                   required: true
                   schema:
-                      $ref: "#/definitions/TransactionDetail"
+                      $ref: "#/definitions/TransactionUpdate"
             produces:
                 - application/json
             responses:
                 "200":
                     description: Transaction updated successfully
                     schema:
-                        $ref: "#/definitions/TransactionDetail"
+                        $ref: "#/definitions/TransactionUpdate"
                 "400":
                     description: Invalid Transaction Data
                 "404":
@@ -267,9 +267,6 @@ definitions:
             id:
                 type: string
                 description: Unique identifier of the transaction
-            accountId:
-                type: string
-                description: ID of the account associated with the transaction
             date:
                 type: string
                 format: date
@@ -301,3 +298,12 @@ definitions:
             currency:
                 type: string
                 description: Transaction currency (USD, EUR)
+    TransactionUpdate:
+        type: object
+        properties:
+            category:
+                type: string
+                description: Transaction category
+            note:
+                type: string
+                description: Transaction note
