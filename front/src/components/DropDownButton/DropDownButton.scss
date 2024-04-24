@@ -2,6 +2,8 @@
     flex-grow: 1;
 
     & .button {
+        font-family: 'Roboto', sans-serif;;
+        font-weight: 100;
         width: 100%;
         height: 54px;
         display: flex;
@@ -9,9 +11,10 @@
         justify-content: space-between;
         align-items: center;
         background-color: #61B37B;
-        border-radius: 0px;
+        border-radius: 5px 5px 0 0;
         border: 0px;
         height: 30px;
+        text-align: left;
 
         & .date_column {
             width: 150px;
@@ -32,6 +35,7 @@
         & .buttonArrow {
             width: 32px;
             margin-right: 15px;
+            text-align: center;
 
             @media (max-width: 879px) {
                 width: 23px;
@@ -58,7 +62,7 @@
         transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
         color: white;
         padding-left: 1rem;
-
+        border-radius: 0 0 5px 5px;
         &.hidden {
             max-height: 0;
         }

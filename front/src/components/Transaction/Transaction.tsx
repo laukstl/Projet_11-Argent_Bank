@@ -20,10 +20,10 @@ function Transaction() {
                     <table>
                         <tbody>
                             <tr>
-                                <th className="date_column">Date</th>
-                                <th className="desc_column">Description</th>
-                                <th className="amount_column">Amount</th>
-                                <th className="balance_column">Balance</th>
+                                <td className="date_column">Date</td>
+                                <td className="desc_column">Description</td>
+                                <td className="amount_column">Amount</td>
+                                <td className="balance_column">Balance</td>
                             </tr>
                         </tbody>
                     </table>
@@ -33,29 +33,9 @@ function Transaction() {
                         description="Golden Sun Bakery"
                         amount="$8.00"
                         balance="$298.00"
-                        contenu=
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Transaction type</th>
-                                    <th>Electronic</th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Food  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Note</th>
-                                    <th>lorem ipsum  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
+                        transaction="Electronic"
+                        category="Food"
+                        note="lorem ipsum"
                     />
 
                     <DropDownButton
@@ -63,29 +43,9 @@ function Transaction() {
                         description="Golden Sun Bakery"
                         amount="$8.00"
                         balance="$298.00"
-                        contenu=
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Transaction type</th>
-                                    <th>Electronic</th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Food  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Note</th>
-                                    <th>lorem ipsum  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
+                        transaction="Electronic"
+                        category="Food"
+                        note="lorem ipsum"
                     />
 
                     <DropDownButton
@@ -93,29 +53,9 @@ function Transaction() {
                         description="Golden Sun Bakery"
                         amount="$8.00"
                         balance="$298.00"
-                        contenu=
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Transaction type</th>
-                                    <th>Electronic</th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Food  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Note</th>
-                                    <th>lorem ipsum  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
+                        transaction="Electronic"
+                        category="Food"
+                        note="lorem ipsum"
                     />
 
                     <DropDownButton
@@ -123,29 +63,19 @@ function Transaction() {
                         description="Golden Sun Bakery"
                         amount="$8.00"
                         balance="$298.00"
-                        contenu=
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <th>Transaction type</th>
-                                    <th>Electronic</th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Food  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                            <tbody>
-                                <tr>
-                                    <th>Note</th>
-                                    <th>lorem ipsum  <i className="fa fa-pencil"></i>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
+                        transaction="Electronic"
+                        category="Food"
+                        note="lorem ipsum"
+                    />
+
+                    <DropDownButton
+                        date="27/02/20"
+                        description="Golden Sun Bakery"
+                        amount="$8.00"
+                        balance="$298.00"
+                        transaction="Electronic"
+                        category="Food"
+                        note="lorem ipsum"
                     />
                 </div>
             </section>

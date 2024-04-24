@@ -6,7 +6,9 @@ interface dropDownButtonPropsType {
     description: string;
     amount: string;
     balance: string;
-    contenu: any;
+    transaction: string;
+    category: string;
+    note: string;
 }
 
 DropdownButton.defaultProps = {
@@ -14,10 +16,12 @@ DropdownButton.defaultProps = {
     description: "string",
     amount: "string",
     balance: "string",
-    contenu: "string",
+    transaction: "string",
+    category: "string",
+    note: "string",
 };
 
-function DropdownButton({ date, description, amount, balance, contenu }: dropDownButtonPropsType) {
+function DropdownButton({ date, description, amount, balance, transaction, category, note }: dropDownButtonPropsType) {
 
     const [buttonState, setButtonState] = useState(false);
     const toggleButtonState = () => {
@@ -30,10 +34,10 @@ function DropdownButton({ date, description, amount, balance, contenu }: dropDow
                 <table>
                     <tbody>
                         <tr>
-                            <th className="date_column">{date}</th>
-                            <th className="desc_column">{description}</th>
-                            <th className="amount_column">{amount}</th>
-                            <th className="balance_column">{balance}</th>
+                            <td className="date_column">{date}</td>
+                            <td className="desc_column">{description}</td>
+                            <td className="amount_column">{amount}</td>
+                            <td className="balance_column">{balance}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -42,7 +46,28 @@ function DropdownButton({ date, description, amount, balance, contenu }: dropDow
             </button>
             {/* zone de texte qui s'affiche ou se masque en fonction de l'état du bouton */}
             <div className={`text ${buttonState ? "shown" : "hidden"}`}>
-                {contenu}
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Transaction type</td>
+                            <td>{transaction}</td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Category</td>
+                            <td>{category}  <i className="fa fa-pencil"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td>Note</td>
+                            <td>{note}  <i className="fa fa-pencil"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     )

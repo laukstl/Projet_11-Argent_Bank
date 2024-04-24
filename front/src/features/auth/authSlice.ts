@@ -15,15 +15,15 @@ const initialState: initialAuthStateType = {
     rememberMe: false,
 }
 
-const authSlice = createSlice({
+const authSlice = createSlice({ // RTK: inclu reducers/actions/initialstate
     name: 'auth',
     initialState,
     reducers: {
         setIsAuth(state) {
-            state.isAuthenticated = true;
+            state.isAuthenticated = true; // pas besoin de déstructurer/switch_case/...
         },
         loginFailure(state) {
-            state.isAuthenticated = false;
+            state.isAuthenticated = false; // passe par immer en background
         },
         unsetIsAuth(state) {
             state.isAuthenticated = false;
@@ -38,4 +38,4 @@ export default authSlice.reducer;
 export const { setIsAuth, loginFailure, unsetIsAuth, rememberMe } = authSlice.actions;
 
 export const selectIsRememberMe = (state: RootState) => state.auth.rememberMe;
-// // export const selectIsAuthenticated = (state: RootState) => state.auth.setIsAuth;
+export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;

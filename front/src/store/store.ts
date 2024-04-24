@@ -6,7 +6,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { api } from '../api/API';
 
-const store = configureStore({
+const store = configureStore({ // set les reducers et le middleware du store
     reducer: {
         ui: uiSlice,
         auth: authSlice,
@@ -14,10 +14,10 @@ const store = configureStore({
         [api.reducerPath]: api.reducer,
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(api.middleware),
+        getDefaultMiddleware().concat(api.middleware), // RTK(). auquel on ajoute RTKQ ( req async )
 });
 
-setupListeners(store.dispatch);
+setupListeners(store.dispatch); // RTKQ => actions: pending/fufilled/rejected/...
 
 export default store;
 

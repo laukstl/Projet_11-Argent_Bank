@@ -13,10 +13,12 @@ import Footer from '../components/Footer';
 import Error from '../components/Error';
 
 import { useGetToken } from "../features/auth/authUtils";
+import { selectIsAuthenticated } from "../features/auth/authSlice";
 
 const App = () => {
     const token = useGetToken();
-    const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+    const isAuthenticated = useAppSelector(selectIsAuthenticated); // si appel de plusieurs comp
+    // const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated); // si appel ponctuel
 
     return (
         <div className="App">
@@ -24,9 +26,18 @@ const App = () => {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/user" element={token ? <User /> : <Navigate to="/sign-in" replace />} />
-                    <Route path="/transaction" element={token ? <Transaction /> : <Navigate to="/sign-in" replace />} />
-                    <Route path="/sign-in" element={isAuthenticated ? <Navigate to="/user" replace /> : <Signin />} />
+                    <Route
+                        path="/user"
+                        element={token ? <User /> : <Navigate to="/sign-in" replace />}
+                    />
+                    <Route
+                        path="/transaction"
+                        element={token ? <Transaction /> : <Navigate to="/sign-in" replace />}
+                    />
+                    <Route
+                        path="/sign-in"
+                        element={isAuthenticated ? <Navigate to="/user" replace /> : <Signin />}
+                    />
                     <Route path="*" element={<Error />} />
                 </Routes>
                 <Footer />
