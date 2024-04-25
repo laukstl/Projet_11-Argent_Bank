@@ -4,7 +4,6 @@ import TransactionCard from '../../components/TransactionCard';
 
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 
-import { useFetchUserProfile } from '../../features/user/userUtils';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import { selectIsEditing, setIsEditing } from '../../features/ui/uiSlice';
 import { selectFirstName, selectLastName } from '../../features/user/userSlice';
@@ -19,8 +18,6 @@ function User() {
 
     const firstName = useAppSelector(selectFirstName);
     const lastName = useAppSelector(selectLastName);
-
-    useFetchUserProfile();
 
     return (
         <main className="main bg-dark">
