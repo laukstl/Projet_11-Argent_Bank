@@ -1,3 +1,5 @@
+// FIXME: check si les infos ont changés ( avec 2 connections, si l'un change le userName, l'autre ne le voit plus )
+
 import type React from "react";
 
 import { useEffect } from 'react';
@@ -12,14 +14,13 @@ interface Props {
 }
 
 const AuthMiddleware: React.FC<Props> = ({ children }) => {
-    
     const token = useGetToken();
     const dispatch = useAppDispatch();
     const isAuth = useAppSelector(selectIsAuthenticated);
 
     const { data: userData, isSuccess } = useGetUserProfileQuery(
         null,
-        { refetchOnMountOrArgChange: true, skip: !token && !isAuth},
+        { refetchOnMountOrArgChange: true, refetchOnFocus: true, skip: !token && !isAuth},
     );
 
     useEffect(() => {
