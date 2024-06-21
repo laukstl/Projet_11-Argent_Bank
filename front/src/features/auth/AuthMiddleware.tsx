@@ -1,5 +1,3 @@
-// FIXME: check si les infos ont changés ( avec 2 connections, si l'un change le userName, l'autre ne le voit plus )
-
 import type React from "react";
 
 import { useEffect } from 'react';
