@@ -7,14 +7,11 @@ interface featureCardPropsType {
     text: string;
 }
 
-FeatureCard.defaultProps = {
-    img: "./src/assets/icon-error.webp",
-    imgAlt: "Image description",
-    title: 'Card title',
-    text: 'Card text',
-};
-
-function FeatureCard({ img, imgAlt, title, text }: featureCardPropsType) {
+function FeatureCard({  img = "./src/assets/icon-error.webp",
+                        imgAlt = "Image description",
+                        title = 'Card title',
+                        text = 'Card text'
+                     }: featureCardPropsType) {
     return (
         <div className="feature-item">
             <img

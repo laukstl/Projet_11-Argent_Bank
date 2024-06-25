@@ -11,14 +11,11 @@ interface transactionCardPropsType {
     navigateTo: string;
 }
 
-TransactionCard.defaultProps = {
-    title: "Card title",
-    amount: "Amount",
-    amountDesc: 'Amount description',
-    navigateTo: '/',
-};
-
-function TransactionCard({ title, amount, amountDesc, navigateTo }: transactionCardPropsType) {
+function TransactionCard({  title = "Card title",
+                            amount = "Amount",
+                            amountDesc = 'Amount description',
+                            navigateTo = '/'
+                        }: transactionCardPropsType) {
     const navigate = useNavigate();
 
     const handleActionOnClick = () => {
@@ -34,6 +31,7 @@ function TransactionCard({ title, amount, amountDesc, navigateTo }: transactionC
             </div>
             <div className="account-content-wrapper cta">
                 <Button
+                    type="button"
                     buttonText="View transactions"
                     actionOnClick={handleActionOnClick}
                 />

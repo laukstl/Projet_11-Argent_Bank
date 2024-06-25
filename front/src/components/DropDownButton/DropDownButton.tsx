@@ -11,17 +11,14 @@ interface dropDownButtonPropsType {
     note: string;
 }
 
-DropdownButton.defaultProps = {
-    date: "string",
-    description: "string",
-    amount: "string",
-    balance: "string",
-    transaction: "string",
-    category: "string",
-    note: "string",
-};
-
-function DropdownButton({ date, description, amount, balance, transaction, category, note }: dropDownButtonPropsType) {
+function DropdownButton({   date = "string",
+                            description = "string",
+                            amount = "string",
+                            balance = "string",
+                            transaction = "string",
+                            category = "string",
+                            note = "string"
+                        }: dropDownButtonPropsType) {
 
     const [buttonState, setButtonState] = useState(false);
     const toggleButtonState = () => {
